@@ -1,0 +1,505 @@
+<wsdl:definitions name="MoneyOrderService" targetNamespace="http://tempuri.org/"
+<wsdl:definitions name="MoneyOrderService" targetNamespace="http://tempuri.org/"
+                  xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/"
+                  xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+                  xmlns:wsa10="http://www.w3.org/2005/08/addressing"
+                  xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+                  xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                  xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <wsdl:types>
+        <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+            <xs:element name="EftTransfer">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="eftRequest" nillable="true" type="q1:EftRequest"
+                                    xmlns:q1="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="EftTransferResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="EftTransferResult" nillable="true" type="q2:EftResponse"
+                                    xmlns:q2="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Transfer">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="havaleRequest" nillable="true" type="q3:HavaleRequest"
+                                    xmlns:q3="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TransferResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="TransferResult" nillable="true" type="q4:HavaleResponse"
+                                    xmlns:q4="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetTransactionStatus">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="transactionInfoRequest" nillable="true"
+                                    type="q5:TransactionInfoRequest"
+                                    xmlns:q5="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetTransactionStatusResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetTransactionStatusResult" nillable="true"
+                                    type="q6:TransactionInfoResponse"
+                                    xmlns:q6="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetToken">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="tokenRequest" nillable="true" type="q7:TokenRequest"
+                                    xmlns:q7="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetTokenResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetTokenResult" nillable="true" type="q8:TokenResponse"
+                                    xmlns:q8="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="EftTransferWithToken">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="eftWithTokenRequest" nillable="true"
+                                    type="q9:EftWithTokenRequest"
+                                    xmlns:q9="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="EftTransferWithTokenResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="EftTransferWithTokenResult" nillable="true"
+                                    type="q10:EftResponse"
+                                    xmlns:q10="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TransferWithToken">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="havaleWithTokenRequest" nillable="true"
+                                    type="q11:HavaleWithTokenRequest"
+                                    xmlns:q11="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TransferWithTokenResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="TransferWithTokenResult" nillable="true"
+                                    type="q12:HavaleResponse"
+                                    xmlns:q12="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetReceipt">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="dekontRequest" nillable="true" type="q13:DekontRequest"
+                                    xmlns:q13="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetReceiptResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetReceiptResult" nillable="true" type="q14:DekontResponse"
+                                    xmlns:q14="http://schemas.datacontract.org/2004/07/EntityLayer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified"
+                   targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/"
+                   xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+            <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+            <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+            <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+            <xs:element name="byte" nillable="true" type="xs:byte"/>
+            <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+            <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+            <xs:element name="double" nillable="true" type="xs:double"/>
+            <xs:element name="float" nillable="true" type="xs:float"/>
+            <xs:element name="int" nillable="true" type="xs:int"/>
+            <xs:element name="long" nillable="true" type="xs:long"/>
+            <xs:element name="QName" nillable="true" type="xs:QName"/>
+            <xs:element name="short" nillable="true" type="xs:short"/>
+            <xs:element name="string" nillable="true" type="xs:string"/>
+            <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+            <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+            <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+            <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+            <xs:element name="char" nillable="true" type="tns:char"/>
+            <xs:simpleType name="char">
+                <xs:restriction base="xs:int"/>
+            </xs:simpleType>
+            <xs:element name="duration" nillable="true" type="tns:duration"/>
+            <xs:simpleType name="duration">
+                <xs:restriction base="xs:duration">
+                    <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+                    <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+                    <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:element name="guid" nillable="true" type="tns:guid"/>
+            <xs:simpleType name="guid">
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:attribute name="FactoryType" type="xs:QName"/>
+            <xs:attribute name="Id" type="xs:ID"/>
+            <xs:attribute name="Ref" type="xs:IDREF"/>
+        </xs:schema>
+        <xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/EntityLayer"
+                   xmlns:tns="http://schemas.datacontract.org/2004/07/EntityLayer"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:complexType name="EftRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="authantication" nillable="true" type="tns:Authentication"/>
+                    <xs:element minOccurs="0" name="eft" nillable="true" type="tns:Eft"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="EftRequest" nillable="true" type="tns:EftRequest"/>
+            <xs:complexType name="Authentication">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Authentication" nillable="true" type="tns:Authentication"/>
+            <xs:complexType name="Eft">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Amount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="BankCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="BranchCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="FirmId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="IsCreditCard" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="PayeeAccountNo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="PayeeNameSurname" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ReasonCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="RemitterIBAN" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="TransactionDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="TransactionDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="TransactionId" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Eft" nillable="true" type="tns:Eft"/>
+            <xs:complexType name="EftResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="BSMV" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="CommissionAmount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="CostAmount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="EftRefNo" type="xs:long"/>
+                    <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ReturnCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="ReturnMessage" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="EftResponse" nillable="true" type="tns:EftResponse"/>
+            <xs:complexType name="HavaleRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="authantication" nillable="true" type="tns:Authentication"/>
+                    <xs:element minOccurs="0" name="havale" nillable="true" type="tns:Havale"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="HavaleRequest" nillable="true" type="tns:HavaleRequest"/>
+            <xs:complexType name="Havale">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Amount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="CheckIdentityNo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="FirmId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="IdentityNo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="PayeeAccountNo" type="xs:int"/>
+                    <xs:element minOccurs="0" name="PayeeBranchCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="PayeeIBAN" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ProcessType" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ReasonCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="RemitterAccountNo" type="xs:int"/>
+                    <xs:element minOccurs="0" name="RemitterBranchCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="RemitterCurrencyCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="TransactionDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="TransactionDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="TransactionId" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Havale" nillable="true" type="tns:Havale"/>
+            <xs:complexType name="HavaleResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="BSMV" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="CommissionAmount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="CostAmount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="PayeeNameSurname" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ReturnCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="ReturnMessage" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="TransferRefNo" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="HavaleResponse" nillable="true" type="tns:HavaleResponse"/>
+            <xs:complexType name="TransactionInfoRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="authantication" nillable="true" type="tns:Authentication"/>
+                    <xs:element minOccurs="0" name="eft" nillable="true" type="tns:TransactionInfo"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="TransactionInfoRequest" nillable="true" type="tns:TransactionInfoRequest"/>
+            <xs:complexType name="TransactionInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="FirmId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="TransactionDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="TransactionId" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="TransactionInfo" nillable="true" type="tns:TransactionInfo"/>
+            <xs:complexType name="TransactionInfoResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ReturnCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="ReturnMessage" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="TransactionInfoResponse" nillable="true" type="tns:TransactionInfoResponse"/>
+            <xs:complexType name="TokenRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="TransactionId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="authantication" nillable="true" type="tns:Authentication"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="TokenRequest" nillable="true" type="tns:TokenRequest"/>
+            <xs:complexType name="TokenResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="AccessToken" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ReturnCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="ReturnMessage" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="TokenExpireDate" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="TokenResponse" nillable="true" type="tns:TokenResponse"/>
+            <xs:complexType name="EftWithTokenRequest">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:EftRequest">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="AccessToken" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="EftWithTokenRequest" nillable="true" type="tns:EftWithTokenRequest"/>
+            <xs:complexType name="HavaleWithTokenRequest">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:HavaleRequest">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="AccessToken" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="HavaleWithTokenRequest" nillable="true" type="tns:HavaleWithTokenRequest"/>
+            <xs:complexType name="DekontRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="DekontKey" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="authantication" nillable="true" type="tns:Authentication"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="DekontRequest" nillable="true" type="tns:DekontRequest"/>
+            <xs:complexType name="DekontResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="DekontKey" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ReturnCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="ReturnMessage" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="DekontResponse" nillable="true" type="tns:DekontResponse"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="IMoneyOrderService_EftTransfer_InputMessage">
+        <wsdl:part element="tns:EftTransfer" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="IMoneyOrderService_EftTransfer_OutputMessage">
+        <wsdl:part element="tns:EftTransferResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="IMoneyOrderService_Transfer_InputMessage">
+        <wsdl:part element="tns:Transfer" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="IMoneyOrderService_Transfer_OutputMessage">
+        <wsdl:part element="tns:TransferResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="IMoneyOrderService_GetTransactionStatus_InputMessage">
+        <wsdl:part element="tns:GetTransactionStatus" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="IMoneyOrderService_GetTransactionStatus_OutputMessage">
+        <wsdl:part element="tns:GetTransactionStatusResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="IMoneyOrderService_GetToken_InputMessage">
+        <wsdl:part element="tns:GetToken" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="IMoneyOrderService_GetToken_OutputMessage">
+        <wsdl:part element="tns:GetTokenResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="IMoneyOrderService_EftTransferWithToken_InputMessage">
+        <wsdl:part element="tns:EftTransferWithToken" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="IMoneyOrderService_EftTransferWithToken_OutputMessage">
+        <wsdl:part element="tns:EftTransferWithTokenResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="IMoneyOrderService_TransferWithToken_InputMessage">
+        <wsdl:part element="tns:TransferWithToken" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="IMoneyOrderService_TransferWithToken_OutputMessage">
+        <wsdl:part element="tns:TransferWithTokenResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="IMoneyOrderService_GetReceipt_InputMessage">
+        <wsdl:part element="tns:GetReceipt" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="IMoneyOrderService_GetReceipt_OutputMessage">
+        <wsdl:part element="tns:GetReceiptResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:portType name="IMoneyOrderService">
+        <wsdl:operation name="EftTransfer">
+            <wsdl:input message="tns:IMoneyOrderService_EftTransfer_InputMessage"
+                        wsaw:Action="http://tempuri.org/IMoneyOrderService/EftTransfer"/>
+            <wsdl:output message="tns:IMoneyOrderService_EftTransfer_OutputMessage"
+                         wsaw:Action="http://tempuri.org/IMoneyOrderService/EftTransferResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="Transfer">
+            <wsdl:input message="tns:IMoneyOrderService_Transfer_InputMessage"
+                        wsaw:Action="http://tempuri.org/IMoneyOrderService/Transfer"/>
+            <wsdl:output message="tns:IMoneyOrderService_Transfer_OutputMessage"
+                         wsaw:Action="http://tempuri.org/IMoneyOrderService/TransferResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetTransactionStatus">
+            <wsdl:input message="tns:IMoneyOrderService_GetTransactionStatus_InputMessage"
+                        wsaw:Action="http://tempuri.org/IMoneyOrderService/GetTransactionStatus"/>
+            <wsdl:output message="tns:IMoneyOrderService_GetTransactionStatus_OutputMessage"
+                         wsaw:Action="http://tempuri.org/IMoneyOrderService/GetTransactionStatusResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetToken">
+            <wsdl:input message="tns:IMoneyOrderService_GetToken_InputMessage"
+                        wsaw:Action="http://tempuri.org/IMoneyOrderService/GetToken"/>
+            <wsdl:output message="tns:IMoneyOrderService_GetToken_OutputMessage"
+                         wsaw:Action="http://tempuri.org/IMoneyOrderService/GetTokenResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="EftTransferWithToken">
+            <wsdl:input message="tns:IMoneyOrderService_EftTransferWithToken_InputMessage"
+                        wsaw:Action="http://tempuri.org/IMoneyOrderService/EftTransferWithToken"/>
+            <wsdl:output message="tns:IMoneyOrderService_EftTransferWithToken_OutputMessage"
+                         wsaw:Action="http://tempuri.org/IMoneyOrderService/EftTransferWithTokenResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="TransferWithToken">
+            <wsdl:input message="tns:IMoneyOrderService_TransferWithToken_InputMessage"
+                        wsaw:Action="http://tempuri.org/IMoneyOrderService/TransferWithToken"/>
+            <wsdl:output message="tns:IMoneyOrderService_TransferWithToken_OutputMessage"
+                         wsaw:Action="http://tempuri.org/IMoneyOrderService/TransferWithTokenResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetReceipt">
+            <wsdl:input message="tns:IMoneyOrderService_GetReceipt_InputMessage"
+                        wsaw:Action="http://tempuri.org/IMoneyOrderService/GetReceipt"/>
+            <wsdl:output message="tns:IMoneyOrderService_GetReceipt_OutputMessage"
+                         wsaw:Action="http://tempuri.org/IMoneyOrderService/GetReceiptResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="BasicHttpBinding_IMoneyOrderService" type="tns:IMoneyOrderService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="EftTransfer">
+            <soap:operation soapAction="http://tempuri.org/IMoneyOrderService/EftTransfer" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Transfer">
+            <soap:operation soapAction="http://tempuri.org/IMoneyOrderService/Transfer" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTransactionStatus">
+            <soap:operation soapAction="http://tempuri.org/IMoneyOrderService/GetTransactionStatus" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetToken">
+            <soap:operation soapAction="http://tempuri.org/IMoneyOrderService/GetToken" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EftTransferWithToken">
+            <soap:operation soapAction="http://tempuri.org/IMoneyOrderService/EftTransferWithToken" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="TransferWithToken">
+            <soap:operation soapAction="http://tempuri.org/IMoneyOrderService/TransferWithToken" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetReceipt">
+            <soap:operation soapAction="http://tempuri.org/IMoneyOrderService/GetReceipt" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="MoneyOrderService">
+        <wsdl:port binding="tns:BasicHttpBinding_IMoneyOrderService" name="BasicHttpBinding_IMoneyOrderService">
+            <soap:address location="https://apigateuat.akbank.com:8443/api/MoneyOrderService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
